@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+button,.btn{
+    cursor: pointer;
+}
+
+a.btn {
+    display: inline-block;
+}
