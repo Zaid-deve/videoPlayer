@@ -1,11 +1,17 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
+const cors = require('cors');
 const url = require('url-parser');
 const { getHeaders, sendResp, isVideo, isHtml, parseHtmlForVideo } = require('./utils/functions');
 
 dotenv.config();
 
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'HEAD'],
+    credentials: true
+}))
 app.use(express.json());
 
 app.get('/getVideo', async (req, res) => {
