@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import bgImage from '/src/assets/christian-stahl-xmGkzY--Fgg-unsplash.jpg';
 
 export default function Home() {
     return (
         <div className="h-screen flex items-center justify-center bg-cover bg-center relative"
-            style={{ backgroundImage: 'url("/src/assets/christian-stahl-xmGkzY--Fgg-unsplash.jpg")' }}>
+            style={{ backgroundImage: `url(${bgImage})` }}>
             <div className="absolute inset-0 bg-black opacity-70"></div>
             <div className="relative z-10 px-6">
                 <h1 className="text-4xl font-bold text-white mb-6">
