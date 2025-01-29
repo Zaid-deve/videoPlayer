@@ -1,16 +1,16 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
-const url = require('url-parser');
+const cors = require('cors');
 const { getHeaders, sendResp, isVideo, isHtml, parseHtmlForVideo } = require('./utils/functions');
 
 dotenv.config();
 
+app.use(cors());
 app.use(express.json());
 
-app.get('/getVideo', async (req, res) => {
-    const params = url.parse(req.url);
-    const videoUrl = params.query.split('=').pop();
+app.post('/getVideo', async (req, res) => {
+    const videoUrl = req.body.url;
 
     if (!videoUrl) {
         return sendResp(res, { success: false, message: 'No URL provided!' }, 400);
@@ -23,7 +23,7 @@ app.get('/getVideo', async (req, res) => {
             const ctype = headers.headers['content-type'];
 
             if (isVideo(ctype)) {
-                return sendResp(res, { success: true, videoUrl });
+                return sendResp(res, { success: true, length: 1, videoUrl });
             } else if (isHtml(ctype)) {
                 const videoSrc = await parseHtmlForVideo(videoUrl);
 
