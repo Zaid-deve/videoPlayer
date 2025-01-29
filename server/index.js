@@ -7,16 +7,12 @@ const { getHeaders, sendResp, isVideo, isHtml, parseHtmlForVideo } = require('./
 
 dotenv.config();
 
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'HEAD'],
-    credentials: true
-}))
+app.use(cors());
 app.use(express.json());
 
 app.get('/getVideo', async (req, res) => {
     const params = url.parse(req.url);
-    const videoUrl = params.query.split('=').pop();
+    const videoUrl = params.query?.split('=').pop();
 
     if (!videoUrl) {
         return sendResp(res, { success: false, message: 'No URL provided!' }, 400);
