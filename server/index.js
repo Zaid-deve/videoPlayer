@@ -23,7 +23,7 @@ app.post('/getVideo', async (req, res) => {
             const ctype = headers.headers['content-type'];
 
             if (isVideo(ctype)) {
-                return sendResp(res, { success: true, videoUrl });
+                return sendResp(res, { success: true, length: 1, videoUrl });
             } else if (isHtml(ctype)) {
                 const videoSrc = await parseHtmlForVideo(videoUrl);
 

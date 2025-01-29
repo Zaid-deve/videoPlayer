@@ -23,9 +23,13 @@ export default function Video() {
     async function getVideoFromUrl() {
         if (url) {
             try {
-                const req = await axios.post(`/api/getVideo`, JSON.stringify({ url }));
+                const req = await axios.post(`/api/getVideo`, JSON.stringify({ url }), {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
                 const { data, status } = req;
-                if (status === 200 && ((data.length == 1 && data.videoUrl) || data.length > 1 && data.videoSrc)) {
+                if (status == 200 && ((data.length == 1 && data.videoUrl) || data.length > 1 && data.videoSrc)) {
                     return { ...data, videoUrl: data.videoUrl || data.videoSrc };
                 }
                 return { success: false, message: data.message ?? 'Something went wrong !' };
