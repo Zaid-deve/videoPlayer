@@ -1,9 +1,9 @@
 {
-    "rewrites": [
-      {
-        "source": "/api/:path*",
-        "destination": "https://videoplayer-yggk.onrender.com/:path*"
-      }
+    "redirects": [
+        {
+            "source": "/api/:path*",
+            "destination": "https://videoplayer-yggk.onrender.com/:path*",
+            "permanent": true
+        }
     ]
-  }
-  
+}
