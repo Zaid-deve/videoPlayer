@@ -23,7 +23,7 @@ export default function Video() {
     async function getVideoFromUrl() {
         if (url) {
             try {
-                const req = await axios.get(`/api/getVideo?url=${url}`);
+                const req = await axios.post(`/api/getVideo`, JSON.stringify({ url }));
                 const { data, status } = req;
                 if (status === 200 && ((data.length == 1 && data.videoUrl) || data.length > 1 && data.videoSrc)) {
                     return { ...data, videoUrl: data.videoUrl || data.videoSrc };
