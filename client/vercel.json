@@ -3,6 +3,10 @@
       {
         "source": "/api/:path*",
         "destination": "https://videoplayer-yggk.onrender.com/:path*"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/index.html"
       }
     ]
   }
